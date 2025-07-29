@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/Course.php';
 require_once __DIR__ . '/Participant.php';
-require_once __DIR__ . '/Presence.php';
+require_once __DIR__ . '/CertificateGenerator.php';
 
 class Certificate {
     private $conn;
@@ -40,7 +40,8 @@ class Certificate {
         $unique_code = $this->generateUniqueCode();
         
         // Gera o PDF do certificado
-        $file_path = $this->generateCertificatePDF($course_id, $participant_id, $unique_code);
+        $generator = new CertificateGenerator();
+        $file_path = $generator->generateCertificatePDF($course_id, $participant_id, $unique_code);
         
         if ($file_path) {
             $query = "INSERT INTO " . $this->table_name . " (course_id, participant_id, unique_code, file_path) VALUES (:course_id, :participant_id, :unique_code, :file_path)";
@@ -146,80 +147,8 @@ class Certificate {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    private function generateCertificatePDF($course_id, $participant_id, $unique_code) {
-        $course = new Course();
-        $participant = new Participant();
-        
-        $courseData = $course->getById($course_id);
-        $participantData = $participant->getById($participant_id);
-        
-        if (!$courseData || !$participantData) {
-            return false;
-        }
-        
-        // Cria o diretório de certificados se não existir
-        $certificates_dir = __DIR__ . '/../../certificates/';
-        if (!is_dir($certificates_dir)) {
-            mkdir($certificates_dir, 0755, true);
-        }
-        
-        $filename = 'certificate_' . $unique_code . '.pdf';
-        $file_path = $certificates_dir . $filename;
-        
-        // Gera o HTML do certificado
-        $html = $this->generateCertificateHTML($courseData, $participantData, $unique_code);
-        
-        // Converte HTML para PDF usando DomPDF ou similar
-        // Por simplicidade, vamos salvar como HTML por enquanto
-        file_put_contents(str_replace('.pdf', '.html', $file_path), $html);
-        
-        return 'certificates/' . $filename;
-    }
     
-    private function generateCertificateHTML($courseData, $participantData, $unique_code) {
-        $course_date = date('d/m/Y', strtotime($courseData['date']));
-        $issue_date = date('d/m/Y');
-        
-        $html = '
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Certificado</title>
-            <style>
-                body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-                .certificate { border: 5px solid #333; padding: 50px; margin: 20px; }
-                .title { font-size: 36px; font-weight: bold; margin-bottom: 30px; }
-                .subtitle { font-size: 24px; margin-bottom: 20px; }
-                .content { font-size: 18px; line-height: 1.6; margin: 20px 0; }
-                .participant { font-size: 28px; font-weight: bold; margin: 30px 0; text-decoration: underline; }
-                .course { font-size: 22px; font-weight: bold; margin: 20px 0; }
-                .footer { margin-top: 50px; font-size: 14px; }
-                .code { position: absolute; bottom: 20px; right: 20px; font-size: 12px; }
-            </style>
-        </head>
-        <body>
-            <div class="certificate">
-                <div class="title">CERTIFICADO</div>
-                <div class="subtitle">Certificamos que</div>
-                <div class="participant">' . htmlspecialchars($participantData['name']) . '</div>
-                <div class="content">
-                    participou do curso/evento<br>
-                    <div class="course">' . htmlspecialchars($courseData['name']) . '</div>
-                    com carga horária de ' . htmlspecialchars($courseData['workload']) . ',<br>
-                    realizado em ' . $course_date . '.
-                </div>
-                <div class="footer">
-                    <p>Responsável: ' . htmlspecialchars($courseData['responsible']) . '</p>
-                    <p>Data de emissão: ' . $issue_date . '</p>
-                </div>
-                <div class="code">Código: ' . $unique_code . '</div>
-            </div>
-        </body>
-        </html>';
-        
-        return $html;
-    }
+
     
     public function exportToCSV($filters = []) {
         $certificates = $this->getAll($filters);

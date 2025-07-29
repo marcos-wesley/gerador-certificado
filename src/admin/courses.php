@@ -1,10 +1,12 @@
 <?php
 require_once '../config/auth.php';
 require_once '../classes/Course.php';
+require_once '../classes/Template.php';
 
 requireLogin();
 
 $course = new Course();
+$template = new Template();
 $message = '';
 $message_type = '';
 
@@ -18,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $date = $_POST['date'];
         $responsible = trim($_POST['responsible']);
         $description = trim($_POST['description']);
+        $template_id = !empty($_POST['template_id']) ? $_POST['template_id'] : null;
         
         if (!empty($name) && !empty($workload) && !empty($date) && !empty($responsible)) {
-            $result = $course->create($name, $workload, $date, $responsible, $description);
+            $result = $course->create($name, $workload, $date, $responsible, $description, $template_id);
             if ($result) {
                 $message = 'Curso criado com sucesso!';
                 $message_type = 'success';
@@ -39,9 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $date = $_POST['date'];
         $responsible = trim($_POST['responsible']);
         $description = trim($_POST['description']);
+        $template_id = !empty($_POST['template_id']) ? $_POST['template_id'] : null;
         
         if (!empty($name) && !empty($workload) && !empty($date) && !empty($responsible)) {
-            $result = $course->update($id, $name, $workload, $date, $responsible, $description);
+            $result = $course->update($id, $name, $workload, $date, $responsible, $description, $template_id);
             if ($result) {
                 $message = 'Curso atualizado com sucesso!';
                 $message_type = 'success';
@@ -213,12 +217,30 @@ if (isset($_GET['edit'])) {
                                                        value="<?php echo $edit_course ? htmlspecialchars($edit_course['responsible']) : ''; ?>" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
+                                                <label for="template_id" class="form-label">Modelo de Certificado</label>
+                                                <select class="form-select" id="template_id" name="template_id">
+                                                    <option value="">Modelo Padrão</option>
+                                                    <?php 
+                                                    $templates = $template->getAll();
+                                                    foreach ($templates as $t): 
+                                                    ?>
+                                                        <option value="<?php echo $t['id']; ?>" 
+                                                                <?php echo ($edit_course && $edit_course['template_id'] == $t['id']) ? 'selected' : ''; ?>>
+                                                            <?php echo htmlspecialchars($t['name']); ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
                                                 <label for="description" class="form-label">Descrição</label>
                                                 <textarea class="form-control" id="description" name="description" rows="3"><?php echo $edit_course ? htmlspecialchars($edit_course['description']) : ''; ?></textarea>
                                             </div>
                                         </div>
                                         
-                                        <div class="d-flex gap-2">
+                                        <div class="d-flex gap-2 mt-3">
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="fas fa-save me-2"></i>
                                                 <?php echo $edit_course ? 'Atualizar' : 'Criar'; ?>
@@ -275,15 +297,19 @@ if (isset($_GET['edit'])) {
                                                             <td><?php echo htmlspecialchars($c['workload']); ?></td>
                                                             <td><?php echo date('d/m/Y', strtotime($c['date'])); ?></td>
                                                             <td><?php echo htmlspecialchars($c['responsible']); ?></td>
-                                                            <td>
+                                                                                               <td>
                                                                 <div class="btn-group btn-group-sm">
-                                                                    <a href="courses.php?edit=<?php echo $c['id']; ?>" 
-                                                                       class="btn btn-outline-primary">
-                                                                        <i class="fas fa-edit"></i>
+                                                                    <a href="?edit=<?php echo $c['id']; ?>" class="btn btn-outline-primary">
+                                                                        <i class="fas fa-edit me-1"></i>Editar
+                                                                    </a>
+                                                                    <a href="../public/presence.php?id=<?php echo $c['id']; ?>" 
+                                                                       class="btn btn-outline-success" target="_blank" 
+                                                                       title="Link para lista de presença pública">
+                                                                        <i class="fas fa-link me-1"></i>Presença
                                                                     </a>
                                                                     <button type="button" class="btn btn-outline-danger" 
                                                                             onclick="deleteCourse(<?php echo $c['id']; ?>, '<?php echo htmlspecialchars($c['name']); ?>')">
-                                                                        <i class="fas fa-trash"></i>
+                                                                        <i class="fas fa-trash me-1"></i>Excluir
                                                                     </button>
                                                                 </div>
                                                             </td>

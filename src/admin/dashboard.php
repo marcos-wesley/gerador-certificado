@@ -25,51 +25,16 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
     <title>Dashboard - Sistema de Certificados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../assets/aneti-style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
+        /* Estilos específicos do dashboard */
+        .dashboard-stats {
+            margin-bottom: 2rem;
         }
-        .sidebar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: white;
-        }
-        .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 2px 0;
-            transition: all 0.3s ease;
-        }
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .stat-card-2 {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-        }
-        .stat-card-3 {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-        }
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        
+        .quick-actions {
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -78,10 +43,13 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 px-0">
-                <div class="sidebar">
-                    <div class="p-4">
-                        <h4><i class="fas fa-certificate me-2"></i>Certificados</h4>
-                        <small>Painel Administrativo</small>
+                <div class="aneti-sidebar">
+                    <div class="aneti-logo-container">
+                        <img src="../../assets/logo-branca.png" alt="ANETI" class="aneti-logo">
+                        <div>
+                            <h4 class="aneti-brand-text">ANETI</h4>
+                            <p class="aneti-brand-subtitle">Certificados</p>
+                        </div>
                     </div>
                     
                     <nav class="nav flex-column px-3">
@@ -98,10 +66,14 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
                             <i class="fas fa-check-circle me-2"></i>Lista de Presença
                         </a>
                         <a class="nav-link" href="certificates.php">
-                            <i class="fas fa-award me-2"></i>Certificados
-                        </a>
-                        <hr class="my-3">
-                        <a class="nav-link" href="logout.php">
+                        <i class="fas fa-award me-2"></i>
+                        Certificados
+                    </a>
+                    <a class="nav-link" href="templates.php">
+                        <i class="fas fa-palette me-2"></i>
+                        Modelos
+                    </a>
+                    <a class="nav-link text-danger" href="logout.php">
                             <i class="fas fa-sign-out-alt me-2"></i>Sair
                         </a>
                     </nav>
@@ -111,13 +83,13 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
             <!-- Main Content -->
             <div class="col-md-9 col-lg-10">
                 <!-- Top Navbar -->
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="aneti-navbar navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <h5 class="mb-0">Dashboard</h5>
+                        <h5 class="mb-0 aneti-heading">Dashboard</h5>
                         <div class="navbar-nav ms-auto">
-                            <span class="navbar-text">
+                            <span class="navbar-text aneti-text">
                                 <i class="fas fa-user me-2"></i>
-                                Bem-vindo, <?php echo htmlspecialchars(getUsername()); ?>
+                                <?php echo htmlspecialchars(getUsername()); ?>
                             </span>
                         </div>
                     </div>
@@ -126,32 +98,26 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
                 <!-- Dashboard Content -->
                 <div class="container-fluid p-4">
                     <!-- Statistics Cards -->
-                    <div class="row mb-4">
+                    <div class="row mb-4 dashboard-stats">
                         <div class="col-md-4 mb-3">
-                            <div class="card stat-card">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-graduation-cap fa-3x mb-3"></i>
-                                    <h3><?php echo $total_courses; ?></h3>
-                                    <p class="mb-0">Cursos/Eventos</p>
-                                </div>
+                            <div class="aneti-stat-card aneti-fade-in">
+                                <i class="fas fa-graduation-cap aneti-stat-icon"></i>
+                                <div class="aneti-stat-number"><?php echo $total_courses; ?></div>
+                                <div class="aneti-stat-label">Cursos/Eventos</div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card stat-card-2">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-users fa-3x mb-3"></i>
-                                    <h3><?php echo $total_participants; ?></h3>
-                                    <p class="mb-0">Participantes</p>
-                                </div>
+                            <div class="aneti-stat-card aneti-fade-in" style="animation-delay: 0.1s;">
+                                <i class="fas fa-users aneti-stat-icon"></i>
+                                <div class="aneti-stat-number"><?php echo $total_participants; ?></div>
+                                <div class="aneti-stat-label">Participantes</div>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
-                            <div class="card stat-card-3">
-                                <div class="card-body text-center">
-                                    <i class="fas fa-certificate fa-3x mb-3"></i>
-                                    <h3><?php echo $total_certificates; ?></h3>
-                                    <p class="mb-0">Certificados Emitidos</p>
-                                </div>
+                            <div class="aneti-stat-card aneti-fade-in" style="animation-delay: 0.2s;">
+                                <i class="fas fa-certificate aneti-stat-icon"></i>
+                                <div class="aneti-stat-number"><?php echo $total_certificates; ?></div>
+                                <div class="aneti-stat-label">Certificados Emitidos</div>
                             </div>
                         </div>
                     </div>
@@ -159,25 +125,25 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
                     <!-- Recent Certificates -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="mb-0">
+                            <div class="aneti-card">
+                                <div class="aneti-card-header">
+                                    <h5 class="mb-0 aneti-heading">
                                         <i class="fas fa-clock me-2"></i>
                                         Certificados Recentes
                                     </h5>
                                 </div>
-                                <div class="card-body">
+                                <div class="aneti-card-body">
                                     <?php if (empty($recent_certificates)): ?>
                                         <div class="text-center py-4">
-                                            <i class="fas fa-certificate fa-3x text-muted mb-3"></i>
-                                            <p class="text-muted">Nenhum certificado emitido ainda.</p>
-                                            <a href="certificates.php" class="btn btn-primary">
+                                            <i class="fas fa-certificate fa-3x aneti-text-secondary mb-3"></i>
+                                            <p class="aneti-text">Nenhum certificado emitido ainda.</p>
+                                            <a href="certificates.php" class="aneti-btn aneti-btn-primary">
                                                 <i class="fas fa-plus me-2"></i>Emitir Primeiro Certificado
                                             </a>
                                         </div>
                                     <?php else: ?>
                                         <div class="table-responsive">
-                                            <table class="table table-hover">
+                                            <table class="aneti-table">
                                                 <thead>
                                                     <tr>
                                                         <th>Código</th>

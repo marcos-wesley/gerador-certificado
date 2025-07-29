@@ -1,0 +1,245 @@
+/* Cores ANETI */
+:root {
+    --aneti-blue: #1e3a8a;
+    --aneti-light-blue: #3b82f6;
+    --aneti-navy: #1e293b;
+    --aneti-gray: #64748b;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Usar a fonte Inter */
+    background: linear-gradient(135deg, #e0f2f7 0%, #cce7f0 100%); /* Gradiente suave */
+    min-height: 100vh;
+    color: var(--aneti-navy);
+}
+
+.main-container {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    backdrop-filter: blur(5px);
+    margin: 30px auto;
+    max-width: 700px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header {
+    background: var(--aneti-blue);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.header p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    padding: 30px 20px;
+}
+
+.course-info {
+    background: #f0f4f8; /* Um cinza azulado claro */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--aneti-light-blue);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.course-info h3 {
+    color: var(--aneti-blue);
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.course-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: var(--aneti-navy);
+    font-size: 0.95rem;
+}
+
+.course-detail i {
+    width: 20px;
+    margin-right: 8px;
+    color: var(--aneti-light-blue);
+}
+
+.form-container {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--aneti-navy);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--aneti-light-blue);
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--aneti-blue), var(--aneti-light-blue));
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-left: 4px solid #17a2b8;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    color: var(--aneti-gray);
+    border-top: 1px solid #e9ecef;
+    font-size: 0.85rem;
+}
+
+.icon-large {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.form-text {
+    font-size: 0.8rem;
+    color: var(--aneti-gray);
+    margin-top: 5px;
+}
+
+/* Ajustes para o layout geral */
+.container {
+    padding: 0;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 15px;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    .content {
+        padding: 20px 15px;
+    }
+    .course-info h3 {
+        font-size: 1.3rem;
+    }
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Adicionar fonte Inter */
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMw.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMw.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMw.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+

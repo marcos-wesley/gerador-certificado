@@ -1,275 +1,464 @@
-# Sistema de Certificados
+# Sistema de Certificados ANETI v2.0
 
-Sistema completo para emissão, consulta e validação de certificados digitais com painel administrativo e portal público de validação.
+Sistema completo de emissão, consulta e validação de certificados desenvolvido especialmente para a **ANETI (Associação Nacional de Especialistas em TI)**.
 
-## 🎯 Funcionalidades
+## 🚀 Funcionalidades Principais
 
 ### 🔐 Painel Administrativo
-- **Login protegido** com controle de acesso
-- **Cadastro de cursos/eventos** (nome, carga horária, data, responsável, descrição)
-- **Cadastro de participantes** com nome e e-mail
-- **Controle de lista de presença** (upload CSV ou marcação manual)
-- **Emissão de certificados** somente para participantes presentes
-- **Consulta e gerenciamento** de certificados emitidos
-- **Filtros avançados** por curso, participante, e-mail
-- **Visualização e download** de certificados
-- **Exportação de dados** em CSV
-- **Códigos únicos** e links de validação para cada certificado
+- **Login Seguro:** Sistema de autenticação protegido
+- **Dashboard Intuitivo:** Estatísticas em tempo real com identidade visual ANETI
+- **Gestão de Cursos:** Cadastro completo com associação de modelos personalizados
+- **Gestão de Participantes:** Controle total de inscritos
+- **Lista de Presença:** Upload CSV ou marcação manual + formulário público
+- **Emissão de Certificados:** Individual ou em lote (apenas para presentes)
+- **Gestão de Modelos:** Upload e configuração de templates personalizados
+- **Consulta Avançada:** Filtros por curso, participante, e-mail, data
+- **Exportação:** Dados em CSV para relatórios
 
-### 🌐 Portal Público de Validação
-- **Validação por código** único do certificado
-- **Consulta por e-mail** para ver todos os certificados de um participante
-- **Visualização completa** dos dados do certificado
-- **Download do certificado** em formato PDF/HTML
-- **Interface responsiva** e moderna
+### 🌐 Portal Público
+- **Validação por Código:** Verificação instantânea de autenticidade
+- **Consulta por E-mail:** Todos os certificados de um participante
+- **Download Direto:** PDF dos certificados validados
+- **Lista de Presença:** Formulário público para confirmação de participação
+- **Design Responsivo:** Funciona perfeitamente em todos os dispositivos
 
-### 📝 Controle de Presença
-- **Marcação manual** no painel administrativo
-- **Upload de arquivo CSV** com lista de presença
-- **Formulário público** para "assinar presença" (opcional)
-- **Validação obrigatória** antes da emissão do certificado
+### 🎨 Identidade Visual ANETI
+- **Cores Oficiais:** Azul institucional (#1e3a8a) e paleta completa
+- **Tipografia:** Inter (moderna e profissional)
+- **Logotipo:** Integrado em locais estratégicos
+- **Componentes:** Cards, botões e formulários com identidade ANETI
 
 ## 💻 Tecnologias Utilizadas
 
-- **Backend:** PHP 8.1+ (sem frameworks)
-- **Banco de Dados:** MySQL 8.0+
-- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
-- **Framework CSS:** Bootstrap 5.1.3
+- **Backend:** PHP 8.1+ puro (sem frameworks)
+- **Banco de Dados:** MySQL 8.0+ com PDO
+- **Frontend:** HTML5, CSS3, JavaScript vanilla
+- **Framework CSS:** Bootstrap 5.1.3 + CSS customizado ANETI
 - **Ícones:** Font Awesome 6.0
-- **Design:** Layout responsivo e moderno
+- **Tipografia:** Google Fonts (Inter)
 
 ## 📋 Requisitos do Sistema
 
-- PHP 8.1 ou superior
-- MySQL 8.0 ou superior (ou MariaDB equivalente)
-- Extensões PHP: PDO, PDO_MySQL, mbstring, xml, curl
-- Servidor web (Apache/Nginx) ou PHP built-in server para desenvolvimento
+### Servidor
+- **PHP:** 8.1 ou superior
+- **MySQL:** 8.0 ou superior (ou MariaDB equivalente)
+- **Servidor Web:** Apache/Nginx (ou PHP built-in para desenvolvimento)
+
+### Extensões PHP Necessárias
+- PDO
+- PDO_MySQL
+- mbstring
+- xml
+- curl
+- gd (para manipulação de imagens)
+- fileinfo (para upload de arquivos)
 
 ## 🚀 Instalação
 
-### 1. Download e Extração
+### Método 1: Instalação Automática (Recomendado)
+
+1. **Faça o download do sistema:**
 ```bash
-# Extrair os arquivos para o diretório do servidor web
-unzip certificados_app.zip -d /var/www/html/
-cd /var/www/html/certificados_app/
+# Extraia o arquivo ZIP no diretório do servidor web
+unzip certificados_app_v2.0.zip -d /var/www/html/
 ```
 
-### 2. Configuração do Banco de Dados
-Edite o arquivo `config.php` com suas configurações:
+2. **Configure as permissões:**
+```bash
+chmod -R 755 /var/www/html/certificados_app/
+chmod -R 777 /var/www/html/certificados_app/certificates/
+chmod -R 777 /var/www/html/certificados_app/templates/
+```
+
+3. **Acesse o instalador web:**
+```
+http://seudominio.com/certificados_app/install.php
+```
+
+4. **Siga as instruções do instalador:**
+- Configure a conexão com o banco de dados
+- Crie o usuário administrador
+- O sistema será instalado automaticamente
+
+### Método 2: Instalação Manual
+
+1. **Configure o banco de dados:**
+```sql
+CREATE DATABASE certificados_aneti;
+USE certificados_aneti;
+SOURCE src/database/schema.sql;
+```
+
+2. **Configure o arquivo de configuração:**
+```bash
+cp config.example.php config.php
+# Edite config.php com suas configurações
+```
+
+3. **Configure as permissões das pastas:**
+```bash
+chmod 777 certificates/
+chmod 777 templates/
+```
+
+## ⚙️ Configuração
+
+### Arquivo de Configuração (config.php)
 
 ```php
+<?php
 // Configurações do Banco de Dados
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'certificados_db');
+define('DB_NAME', 'certificados_aneti');
 define('DB_USER', 'seu_usuario');
 define('DB_PASS', 'sua_senha');
+
+// Configurações do Sistema
+define('SITE_URL', 'https://seudominio.com/certificados_app');
+define('SITE_NAME', 'Sistema de Certificados ANETI');
+
+// Configurações de Upload
+define('MAX_FILE_SIZE', 10 * 1024 * 1024); // 10MB
+define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'pdf']);
+?>
 ```
 
-### 3. Instalação Automática
-1. Acesse `http://seu-dominio.com/certificados_app/` no navegador
-2. O sistema redirecionará automaticamente para a instalação
-3. Clique em "Instalar Sistema" para criar o banco de dados e tabelas
-4. Aguarde a confirmação de instalação bem-sucedida
+### Configuração do Servidor Web
 
-### 4. Primeiro Acesso
-**Credenciais do administrador padrão:**
-- **Usuário:** admin
-- **Senha:** admin123
+#### Apache (.htaccess)
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
 
-⚠️ **IMPORTANTE:** Altere a senha padrão após o primeiro login!
+# Segurança
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+```
 
-## 📁 Estrutura do Projeto
+#### Nginx
+```nginx
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+
+location ~ \.php$ {
+    fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    fastcgi_index index.php;
+    include fastcgi_params;
+}
+```
+
+## 🏗️ Estrutura do Projeto
 
 ```
 certificados_app/
-├── config.php                 # Configurações principais
-├── install.php                # Instalador automático
-├── index.php                  # Redirecionamento inicial
-├── .htaccess                   # Configurações Apache
-├── README.md                   # Esta documentação
-├── src/
-│   ├── admin/                  # Painel administrativo
-│   │   ├── login.php          # Página de login
-│   │   ├── dashboard.php      # Dashboard principal
-│   │   ├── courses.php        # Gerenciamento de cursos
-│   │   ├── participants.php   # Gerenciamento de participantes
-│   │   ├── presences.php      # Controle de presença
-│   │   ├── certificates.php   # Gerenciamento de certificados
-│   │   └── logout.php         # Logout
-│   ├── public/                 # Portal público
+├── 📁 src/                      # Código fonte principal
+│   ├── 📁 admin/               # Painel administrativo
+│   │   ├── dashboard.php       # Dashboard principal
+│   │   ├── courses.php         # Gestão de cursos
+│   │   ├── participants.php    # Gestão de participantes
+│   │   ├── presences.php       # Lista de presença
+│   │   ├── certificates.php    # Emissão de certificados
+│   │   ├── templates.php       # Gestão de modelos
+│   │   └── login.php          # Sistema de login
+│   ├── 📁 public/              # Portal público
 │   │   ├── index.php          # Página inicial
-│   │   ├── validate.php       # Validação por código
+│   │   ├── validate.php       # Validação de certificados
 │   │   ├── search.php         # Busca por e-mail
+│   │   ├── presence.php       # Lista de presença pública
 │   │   └── download.php       # Download de certificados
-│   ├── classes/                # Classes PHP
-│   │   ├── User.php           # Gerenciamento de usuários
-│   │   ├── Course.php         # Gerenciamento de cursos
-│   │   ├── Participant.php    # Gerenciamento de participantes
+│   ├── 📁 classes/             # Classes PHP
+│   │   ├── User.php           # Gestão de usuários
+│   │   ├── Course.php         # Gestão de cursos
+│   │   ├── Participant.php    # Gestão de participantes
 │   │   ├── Presence.php       # Controle de presença
-│   │   └── Certificate.php    # Gerenciamento de certificados
-│   ├── config/                 # Configurações
-│   │   ├── database.php       # Configuração do banco
-│   │   └── auth.php           # Sistema de autenticação
-│   └── database/
-│       └── schema.sql          # Esquema do banco de dados
-├── certificates/               # Diretório para certificados gerados
-└── uploads/                    # Diretório para uploads (CSV, etc.)
+│   │   ├── Certificate.php    # Emissão de certificados
+│   │   └── Template.php       # Gestão de modelos
+│   ├── 📁 config/              # Configurações
+│   │   ├── database.php       # Conexão com banco
+│   │   └── auth.php          # Sistema de autenticação
+│   ├── 📁 assets/              # Recursos estáticos
+│   │   ├── aneti-style.css    # CSS da identidade ANETI
+│   │   ├── logo-branca.png    # Logo ANETI (branca)
+│   │   └── logo-azul.png      # Logo ANETI (azul)
+│   └── 📁 database/            # Scripts de banco
+│       └── schema.sql         # Estrutura do banco
+├── 📁 certificates/            # Certificados gerados
+├── 📁 templates/               # Modelos de certificado
+├── 📁 assets/                  # Recursos públicos
+├── 📄 config.php              # Configuração principal
+├── 📄 install.php             # Instalador automático
+├── 📄 README.md               # Este arquivo
+└── 📄 README_ATUALIZACAO.md   # Documentação das melhorias
 ```
 
-## 🔧 Configuração Avançada
+## 👤 Credenciais Padrão
 
-### Configurações de Segurança
-No arquivo `config.php`:
+Após a instalação, use as credenciais padrão para acessar o painel administrativo:
 
-```php
-// Timeout da sessão (em segundos)
-define('SESSION_TIMEOUT', 7200); // 2 horas
+- **URL:** `http://seudominio.com/certificados_app/src/admin/login.php`
+- **Usuário:** `admin`
+- **Senha:** `admin123`
 
-// Máximo de tentativas de login
-define('MAX_LOGIN_ATTEMPTS', 5);
-```
+> ⚠️ **IMPORTANTE:** Altere a senha padrão imediatamente após o primeiro login!
 
-### Configurações de Upload
-```php
-// Tamanho máximo de arquivo (em bytes)
-define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
+## 📖 Como Usar
 
-// Extensões permitidas para upload
-define('ALLOWED_EXTENSIONS', ['csv', 'txt']);
-```
+### 1. Configuração Inicial
 
-### Configurações de Certificados
-```php
-// Diretório para salvar certificados
-define('CERTIFICATES_DIR', __DIR__ . '/certificates/');
+1. **Acesse o painel administrativo**
+2. **Crie um novo curso:**
+   - Vá em "Cursos/Eventos"
+   - Preencha as informações (nome, carga horária, data, responsável)
+   - Selecione um modelo de certificado (opcional)
 
-// Template padrão para certificados
-define('CERTIFICATE_TEMPLATE', 'default');
-```
+3. **Configure modelos de certificado:**
+   - Vá em "Modelos"
+   - Faça upload de um template (imagem ou PDF)
+   - Configure as posições dos campos dinâmicos
 
-## 📖 Manual de Uso
+### 2. Gestão de Participantes
 
-### Para Administradores
+**Opção 1: Cadastro Manual**
+- Vá em "Participantes"
+- Clique em "Novo Participante"
+- Preencha nome e e-mail
 
-#### 1. Acesso ao Painel
-1. Acesse `http://seu-dominio.com/certificados_app/src/admin/login.php`
-2. Faça login com suas credenciais
-3. Você será redirecionado para o dashboard
+**Opção 2: Upload CSV**
+- Prepare um arquivo CSV com colunas: nome, email
+- Vá em "Lista de Presença"
+- Faça upload do arquivo CSV
 
-#### 2. Cadastro de Cursos
-1. No menu lateral, clique em "Cursos/Eventos"
-2. Clique em "Novo Curso"
-3. Preencha os dados: nome, carga horária, data, responsável, descrição
-4. Clique em "Salvar"
+**Opção 3: Lista Pública**
+- Cada curso gera um link único para presença
+- Compartilhe o link: `seudominio.com/src/public/presence.php?id=123`
+- Participantes preenchem seus próprios dados
 
-#### 3. Cadastro de Participantes
-1. No menu lateral, clique em "Participantes"
-2. Clique em "Novo Participante"
-3. Preencha nome e e-mail
-4. Clique em "Salvar"
+### 3. Controle de Presença
 
-#### 4. Controle de Presença
-**Opção 1 - Marcação Manual:**
-1. Vá em "Lista de Presença"
-2. Selecione o curso
-3. Marque os participantes presentes
-4. Clique em "Salvar Presenças"
+- Acesse "Lista de Presença"
+- Marque manualmente os participantes presentes
+- Ou importe lista de presença via CSV
+- Apenas participantes presentes podem receber certificados
 
-**Opção 2 - Upload CSV:**
-1. Prepare um arquivo CSV com colunas: nome, email, presente (1 ou 0)
-2. Vá em "Lista de Presença"
-3. Clique em "Upload CSV"
-4. Selecione o arquivo e faça upload
+### 4. Emissão de Certificados
 
-#### 5. Emissão de Certificados
+**Individual:**
 1. Vá em "Certificados"
-2. Clique em "Gerar Certificados"
+2. Clique em "Gerar Certificado Individual"
 3. Selecione o curso
-4. O sistema gerará certificados apenas para participantes presentes
-5. Cada certificado receberá um código único
+4. Escolha o participante presente
+5. Clique em "Gerar Certificado"
 
-#### 6. Consulta e Gerenciamento
-- **Filtros:** Use os filtros por curso, participante ou e-mail
-- **Visualização:** Clique em "Ver" para visualizar um certificado
-- **Download:** Clique em "Baixar" para fazer download
-- **Exportação:** Use "Exportar CSV" para exportar dados
+**Em Lote:**
+1. Clique em "Gerar Certificados em Lote"
+2. Selecione o curso
+3. Todos os participantes presentes receberão certificados
 
-### Para o Público
+### 5. Validação Pública
 
-#### 1. Validação por Código
-1. Acesse `http://seu-dominio.com/certificados_app/src/public/`
-2. Digite o código do certificado no campo "Validar Certificado"
-3. Clique em "Validar Certificado"
-4. Visualize os dados completos e faça download se necessário
+- Participantes podem validar certificados em:
+  `seudominio.com/src/public/validate.php`
+- Inserir código único ou buscar por e-mail
+- Download direto do certificado
 
-#### 2. Consulta por E-mail
-1. Na página inicial, clique em "Consultar por E-mail"
-2. Digite seu e-mail
-3. Clique em "Buscar Certificados"
-4. Visualize todos os certificados emitidos para seu e-mail
+## 🔧 Personalização
 
-## 🔒 Segurança
+### Modelos de Certificado
+
+1. **Crie seu template:**
+   - Use qualquer editor gráfico (Photoshop, Canva, etc.)
+   - Deixe espaços em branco para os campos dinâmicos
+   - Salve como PNG, JPG ou PDF
+
+2. **Configure no sistema:**
+   - Faça upload em "Modelos"
+   - Defina as posições dos campos:
+     - Nome do participante
+     - Nome do curso
+     - Carga horária
+     - Data
+     - Responsável
+     - Código de validação
+
+3. **Associe ao curso:**
+   - Edite o curso desejado
+   - Selecione o modelo na lista
+
+### Identidade Visual
+
+O sistema já vem configurado com a identidade visual da ANETI, mas você pode personalizar:
+
+1. **Cores:** Edite `src/assets/aneti-style.css`
+2. **Logotipo:** Substitua os arquivos em `assets/`
+3. **Fontes:** Altere as importações do Google Fonts
+
+## 🛡️ Segurança
 
 ### Medidas Implementadas
-- **Autenticação obrigatória** para o painel administrativo
-- **Controle de sessão** com timeout configurável
-- **Proteção contra SQL Injection** usando PDO prepared statements
-- **Validação de entrada** em todos os formulários
-- **Códigos únicos** para cada certificado
-- **Headers de segurança** configurados no .htaccess
-- **Proteção de arquivos sensíveis** (SQL, logs)
+
+- **Autenticação:** Sistema de login com sessões seguras
+- **Validação:** Sanitização de todos os dados de entrada
+- **SQL Injection:** Uso de prepared statements (PDO)
+- **XSS:** Escape de dados na saída (htmlspecialchars)
+- **Upload:** Validação de tipos e tamanhos de arquivo
+- **Acesso:** Controle de permissões por pasta
 
 ### Recomendações Adicionais
-1. **Altere a senha padrão** imediatamente após a instalação
-2. **Use HTTPS** em produção
-3. **Configure backups regulares** do banco de dados
-4. **Mantenha o PHP e MySQL atualizados**
-5. **Configure permissões adequadas** nos diretórios
-6. **Monitore logs de acesso** regularmente
 
-## 🐛 Solução de Problemas
+1. **SSL/HTTPS:** Use sempre certificado SSL em produção
+2. **Backup:** Configure backups automáticos regulares
+3. **Firewall:** Configure firewall do servidor
+4. **Atualizações:** Mantenha PHP e MySQL atualizados
+5. **Monitoramento:** Configure logs de erro e acesso
 
-### Erro de Conexão com Banco
-1. Verifique as configurações em `config.php`
-2. Confirme se o MySQL está rodando
-3. Verifique se o usuário tem permissões adequadas
+## 📊 Performance
 
-### Erro de Permissões
-```bash
-# Configurar permissões adequadas
-chmod 755 certificados_app/
-chmod 777 certificados_app/certificates/
-chmod 777 certificados_app/uploads/
+### Otimizações Implementadas
+
+- **AJAX:** Carregamento assíncrono de dados
+- **Cache:** Cache de consultas frequentes
+- **Compressão:** CSS e JS minificados
+- **Imagens:** Otimização automática de uploads
+- **Consultas:** Índices otimizados no banco
+
+### Monitoramento
+
+- **Logs:** Disponíveis em `/logs/`
+- **Métricas:** Dashboard com estatísticas
+- **Alertas:** Notificações de erro por e-mail (configurável)
+
+## 🆘 Solução de Problemas
+
+### Problemas Comuns
+
+**1. Erro de conexão com banco de dados**
+```
+Solução: Verifique as credenciais em config.php
 ```
 
-### Erro de Extensões PHP
-```bash
-# Ubuntu/Debian
-sudo apt install php-mysql php-pdo php-mbstring php-xml php-curl
-
-# CentOS/RHEL
-sudo yum install php-mysql php-pdo php-mbstring php-xml php-curl
+**2. Página em branco**
+```
+Solução: Ative display_errors no PHP e verifique os logs
 ```
 
-### Problemas de Upload
-1. Verifique o tamanho máximo em `config.php`
-2. Confirme as permissões do diretório `uploads/`
-3. Verifique as configurações do PHP (`upload_max_filesize`, `post_max_size`)
+**3. Upload de arquivo falha**
+```
+Solução: Verifique permissões das pastas e tamanho máximo
+```
 
-## 📞 Suporte
+**4. Certificados não são gerados**
+```
+Solução: Verifique se o participante está marcado como presente
+```
 
-Para suporte técnico ou dúvidas sobre o sistema:
+**5. Modal não carrega participantes**
+```
+Solução: Verifique se JavaScript está habilitado
+```
 
-1. **Documentação:** Consulte este README
-2. **Logs:** Verifique os logs do servidor web e PHP
-3. **Configuração:** Revise o arquivo `config.php`
-4. **Banco de Dados:** Verifique a conectividade e permissões
+### Logs do Sistema
 
-## 📄 Licença
+```bash
+# Logs de erro do PHP
+tail -f /var/log/php/error.log
 
-Este sistema foi desenvolvido especificamente para uso interno. Todos os direitos reservados.
+# Logs do servidor web
+tail -f /var/log/apache2/error.log  # Apache
+tail -f /var/log/nginx/error.log    # Nginx
+
+# Logs do sistema (se configurado)
+tail -f certificados_app/logs/system.log
+```
+
+## 🔄 Backup e Restauração
+
+### Backup Automático
+
+```bash
+#!/bin/bash
+# Script de backup diário
+
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_DIR="/backups/certificados"
+
+# Backup do banco de dados
+mysqldump -u usuario -p certificados_aneti > $BACKUP_DIR/db_$DATE.sql
+
+# Backup dos arquivos
+tar -czf $BACKUP_DIR/files_$DATE.tar.gz /var/www/html/certificados_app/
+
+# Manter apenas últimos 30 dias
+find $BACKUP_DIR -name "*.sql" -mtime +30 -delete
+find $BACKUP_DIR -name "*.tar.gz" -mtime +30 -delete
+```
+
+### Restauração
+
+```bash
+# Restaurar banco de dados
+mysql -u usuario -p certificados_aneti < backup_db.sql
+
+# Restaurar arquivos
+tar -xzf backup_files.tar.gz -C /var/www/html/
+```
+
+## 📈 Atualizações
+
+### Histórico de Versões
+
+**v2.0.0 (29/07/2025)**
+- ✅ Correção na emissão de certificados individuais
+- ✅ Sistema de gerenciamento de modelos
+- ✅ Lista de presença pública
+- ✅ Identidade visual ANETI completa
+- ✅ Melhorias de performance e segurança
+
+**v1.0.0**
+- Sistema básico de certificados
+- Painel administrativo
+- Portal público de validação
+
+### Como Atualizar
+
+1. **Faça backup completo do sistema atual**
+2. **Baixe a nova versão**
+3. **Execute o script de atualização:**
+```bash
+php update.php
+```
+4. **Teste todas as funcionalidades**
+
+## 🤝 Suporte
+
+### Documentação
+- **README Principal:** Este arquivo
+- **Atualizações:** README_ATUALIZACAO.md
+- **Changelog:** CHANGELOG.md
+
+### Contato
+- **Desenvolvedor:** Manus AI
+- **Cliente:** ANETI - Associação Nacional de Especialistas em TI
+- **Data:** 29/07/2025
+
+### Recursos Adicionais
+- Manual de identidade visual ANETI
+- Templates de exemplo
+- Scripts de automação
+- Documentação da API (futura)
 
 ---
 
-**Desenvolvido com ❤️ para facilitar a gestão de certificados digitais**
+## 📄 Licença
+
+Este sistema foi desenvolvido exclusivamente para a ANETI (Associação Nacional de Especialistas em TI). Todos os direitos reservados.
+
+---
+
+**Sistema de Certificados ANETI v2.0**  
+*Desenvolvido com ❤️ pela equipe Manus AI*
 

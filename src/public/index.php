@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #012d6a 20%, #25a244 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -36,11 +36,11 @@
             transition: all 0.3s ease;
         }
         .search-input:focus {
-            border-color: #012d6a;
+            border-color: #667eea;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         .btn-search {
-            background: linear-gradient(135deg, #012d6a 20%, #25a244 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
             border-radius: 15px;
             padding: 15px 30px;
@@ -64,7 +64,7 @@
             transform: translateY(-5px);
         }
         .feature-icon {
-            background: linear-gradient(135deg, #012d6a 20%, #25a244 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             width: 80px;
             height: 80px;

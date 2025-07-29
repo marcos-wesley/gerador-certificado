@@ -7,6 +7,18 @@ require_once '../classes/Presence.php';
 
 requireLogin();
 
+// Tratamento AJAX para carregar participantes
+if (isset($_GET['ajax']) && $_GET['ajax'] == '1' && isset($_GET['course_id'])) {
+    header('Content-Type: application/json');
+    
+    $presence = new Presence();
+    $course_id = $_GET['course_id'];
+    $present_participants = $presence->getPresentParticipants($course_id);
+    
+    echo json_encode(['participants' => $present_participants]);
+    exit;
+}
+
 $course = new Course();
 $participant = new Participant();
 $certificate = new Certificate();
@@ -439,9 +451,27 @@ if ($selected_course_id) {
                 return;
             }
             
-            // Aqui você faria uma requisição AJAX para carregar os participantes
-            // Por simplicidade, vamos recarregar a página com o curso selecionado
-            window.location.href = 'certificates.php?course_id=' + courseId;
+            // Fazer requisição AJAX para carregar participantes
+            fetch('certificates.php?ajax=1&course_id=' + courseId)
+                .then(response => response.json())
+                .then(data => {
+                    participantSelect.innerHTML = '<option value="">Selecione um participante</option>';
+                    
+                    if (data.participants && data.participants.length > 0) {
+                        data.participants.forEach(participant => {
+                            const option = document.createElement('option');
+                            option.value = participant.participant_id;
+                            option.textContent = participant.name + ' (' + participant.email + ')';
+                            participantSelect.appendChild(option);
+                        });
+                    } else {
+                        participantSelect.innerHTML = '<option value="">Nenhum participante presente encontrado</option>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar participantes:', error);
+                    participantSelect.innerHTML = '<option value="">Erro ao carregar participantes</option>';
+                });
         }
         
         function copyToClipboard(text) {

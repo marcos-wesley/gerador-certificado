@@ -17,8 +17,8 @@ class Course {
         $this->conn = $database->getConnection();
     }
     
-    public function create($name, $workload, $date, $responsible, $description = '') {
-        $query = "INSERT INTO " . $this->table_name . " (name, workload, date, responsible, description) VALUES (:name, :workload, :date, :responsible, :description)";
+    public function create($name, $workload, $date, $responsible, $description = '', $template_id = null) {
+        $query = "INSERT INTO " . $this->table_name . " (name, workload, date, responsible, description, template_id) VALUES (:name, :workload, :date, :responsible, :description, :template_id)";
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(':name', $name);
@@ -26,6 +26,7 @@ class Course {
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':responsible', $responsible);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':template_id', $template_id);
         
         if ($stmt->execute()) {
             return $this->conn->lastInsertId();
@@ -55,8 +56,8 @@ class Course {
         return false;
     }
     
-    public function update($id, $name, $workload, $date, $responsible, $description = '') {
-        $query = "UPDATE " . $this->table_name . " SET name = :name, workload = :workload, date = :date, responsible = :responsible, description = :description WHERE id = :id";
+    public function update($id, $name, $workload, $date, $responsible, $description = '', $template_id = null) {
+        $query = "UPDATE " . $this->table_name . " SET name = :name, workload = :workload, date = :date, responsible = :responsible, description = :description, template_id = :template_id WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         
         $stmt->bindParam(':id', $id);
@@ -65,6 +66,7 @@ class Course {
         $stmt->bindParam(':date', $date);
         $stmt->bindParam(':responsible', $responsible);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':template_id', $template_id);
         
         return $stmt->execute();
     }
