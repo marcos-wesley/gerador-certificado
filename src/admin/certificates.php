@@ -106,47 +106,20 @@ if ($selected_course_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificados - Sistema de Certificados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #f8f9fa; }
-        .sidebar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: white;
-        }
-        .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 2px 0;
-            transition: all 0.3s ease;
-        }
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link href="../../assets/aneti-style.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 px-0">
-                <div class="sidebar">
-                    <div class="p-4">
-                        <h4><i class="fas fa-certificate me-2"></i>Certificados</h4>
-                        <small>Painel Administrativo</small>
+                <div class="aneti-sidebar">
+                    <div class="aneti-logo-container">
+                        <img src="../../assets/logo-branca.png" alt="ANETI" class="aneti-logo">
+                        <div>
+                            <h4 class="aneti-brand-text">ANETI</h4>
+                            <p class="aneti-brand-subtitle">Certificados</p>
+                        </div>
                     </div>
                     
                     <nav class="nav flex-column px-3">
@@ -165,8 +138,10 @@ if ($selected_course_id) {
                         <a class="nav-link active" href="certificates.php">
                             <i class="fas fa-award me-2"></i>Certificados
                         </a>
-                        <hr class="my-3">
-                        <a class="nav-link" href="logout.php">
+                        <a class="nav-link" href="templates.php">
+                            <i class="fas fa-palette me-2"></i>Modelos
+                        </a>
+                        <a class="nav-link text-danger" href="logout.php">
                             <i class="fas fa-sign-out-alt me-2"></i>Sair
                         </a>
                     </nav>
@@ -176,11 +151,11 @@ if ($selected_course_id) {
             <!-- Main Content -->
             <div class="col-md-9 col-lg-10">
                 <!-- Top Navbar -->
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="aneti-navbar navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <h5 class="mb-0">Certificados</h5>
+                        <h5 class="mb-0 aneti-heading">Certificados</h5>
                         <div class="navbar-nav ms-auto">
-                            <span class="navbar-text">
+                            <span class="navbar-text aneti-text">
                                 <i class="fas fa-user me-2"></i>
                                 <?php echo htmlspecialchars(getUsername()); ?>
                             </span>

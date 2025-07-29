@@ -79,129 +79,65 @@ $templates = $template->getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modelos de Certificado - Sistema de Certificados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .sidebar {
-            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
-            min-height: 100vh;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-        }
-        .sidebar .nav-link {
-            color: #bdc3c7;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 5px 10px;
-            transition: all 0.3s ease;
-        }
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
-            background: rgba(52, 152, 219, 0.2);
-            color: #3498db;
-            transform: translateX(5px);
-        }
-        .main-content {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            margin: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .btn-primary {
-            background: linear-gradient(45deg, #3498db, #2980b9);
-            border: none;
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-        }
-        .template-preview {
-            max-width: 200px;
-            max-height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .template-card {
-            transition: all 0.3s ease;
-        }
-        .template-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-    </style>
+    <link href="../../assets/aneti-style.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-                <div class="p-3">
-                    <h4 class="text-white mb-4">
-                        <i class="fas fa-certificate me-2"></i>
-                        Certificados
-                    </h4>
-                    <p class="text-muted small">Painel Administrativo</p>
+            <div class="col-md-3 col-lg-2 px-0">
+                <div class="aneti-sidebar">
+                    <div class="aneti-logo-container">
+                        <img src="../../assets/logo-branca.png" alt="ANETI" class="aneti-logo">
+                        <div>
+                            <h4 class="aneti-brand-text">ANETI</h4>
+                            <p class="aneti-brand-subtitle">Certificados</p>
+                        </div>
+                    </div>
+                    
+                    <nav class="nav flex-column px-3">
+                        <a class="nav-link" href="dashboard.php">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                        <a class="nav-link" href="courses.php">
+                            <i class="fas fa-graduation-cap me-2"></i>Cursos/Eventos
+                        </a>
+                        <a class="nav-link" href="participants.php">
+                            <i class="fas fa-users me-2"></i>Participantes
+                        </a>
+                        <a class="nav-link" href="presences.php">
+                            <i class="fas fa-check-circle me-2"></i>Lista de Presença
+                        </a>
+                        <a class="nav-link" href="certificates.php">
+                            <i class="fas fa-award me-2"></i>Certificados
+                        </a>
+                        <a class="nav-link active" href="templates.php">
+                            <i class="fas fa-palette me-2"></i>Modelos
+                        </a>
+                        <a class="nav-link text-danger" href="logout.php">
+                            <i class="fas fa-sign-out-alt me-2"></i>Sair
+                        </a>
+                    </nav>
                 </div>
-                <nav class="nav flex-column">
-                    <a class="nav-link" href="dashboard.php">
-                        <i class="fas fa-tachometer-alt me-2"></i>
-                        Dashboard
-                    </a>
-                    <a class="nav-link" href="courses.php">
-                        <i class="fas fa-graduation-cap me-2"></i>
-                        Cursos/Eventos
-                    </a>
-                    <a class="nav-link" href="participants.php">
-                        <i class="fas fa-users me-2"></i>
-                        Participantes
-                    </a>
-                    <a class="nav-link" href="presences.php">
-                        <i class="fas fa-clipboard-check me-2"></i>
-                        Lista de Presença
-                    </a>
-                    <a class="nav-link" href="certificates.php">
-                        <i class="fas fa-award me-2"></i>
-                        Certificados
-                    </a>
-                    <a class="nav-link active" href="templates.php">
-                        <i class="fas fa-palette me-2"></i>
-                        Modelos
-                    </a>
-                    <a class="nav-link text-danger" href="logout.php">
-                        <i class="fas fa-sign-out-alt me-2"></i>
-                        Sair
-                    </a>
-                </nav>
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-10">
-                <div class="main-content">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2>
-                            <i class="fas fa-palette me-3"></i>
-                            Modelos de Certificado
-                        </h2>
-                        <div class="text-end">
-                            <span class="text-muted">Bem-vindo, <?php echo $_SESSION['username']; ?></span>
+            <div class="col-md-9 col-lg-10">
+                <!-- Top Navbar -->
+                <nav class="aneti-navbar navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <h5 class="mb-0 aneti-heading">Modelos de Certificado</h5>
+                        <div class="navbar-nav ms-auto">
+                            <span class="navbar-text aneti-text">
+                                <i class="fas fa-user me-2"></i>
+                                <?php echo htmlspecialchars(getUsername()); ?>
+                            </span>
                         </div>
                     </div>
+                </nav>
+                
+                <!-- Content -->
+                <div class="container-fluid p-4">
 
                     <?php if ($message): ?>
                         <div class="alert alert-<?php echo $message_type; ?> alert-dismissible fade show">
