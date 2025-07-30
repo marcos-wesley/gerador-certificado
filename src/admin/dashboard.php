@@ -46,10 +46,6 @@ $recent_certificates = array_slice($recent_certificates, 0, 5); // Últimos 5
                 <div class="aneti-sidebar">
                     <div class="aneti-logo-container">
                         <img src="../../assets/logo-branca.png" alt="ANETI" class="aneti-logo">
-                        <div>
-                            <h4 class="aneti-brand-text">ANETI</h4>
-                            <p class="aneti-brand-subtitle">Certificados</p>
-                        </div>
                     </div>
                     
                     <nav class="nav flex-column px-3">

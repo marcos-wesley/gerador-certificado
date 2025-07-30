@@ -115,11 +115,7 @@ if ($selected_course_id) {
             <div class="col-md-3 col-lg-2 px-0">
                 <div class="aneti-sidebar">
                     <div class="aneti-logo-container">
-                        <img src="../../assets/logo-branca.png" alt="ANETI" class="aneti-logo">
-                        <div>
-                            <h4 class="aneti-brand-text">ANETI</h4>
-                            <p class="aneti-brand-subtitle">Certificados</p>
-                        </div>
+                        <img src="../../assets/logo-branca.png" alt="ANETI" class="aneti-logo">  
                     </div>
                     
                     <nav class="nav flex-column px-3">

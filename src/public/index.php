@@ -125,9 +125,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                <img class="logo" src="../assets/img/logo-branca.png">
+                <img class="logo" src="../../assets/logo-branca.png">
                     <h1 class="display-4 fw-bold mb-4">
-                        <i class="fas fa-shield-alt me-3"></i>
+                        <i class="fas fa-shield me-3"></i>
                         Portal de Validação e Emissão de Certificados
                     </h1>
                     <p class="lead mb-5">
