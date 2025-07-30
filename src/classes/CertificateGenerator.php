@@ -298,7 +298,7 @@ class CertificateGenerator {
         
         <div class="footer-info">
             <span>Data de Emissão: ' . $issue_date . '</span>
-            <span class="validation-code">Código: ' . $unique_code . '</span>
+            <span class="validation-code">Código de Validação: ' . $unique_code . '</span>
         </div>
     </div>
 </body>

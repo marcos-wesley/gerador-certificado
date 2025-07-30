@@ -37,7 +37,9 @@ if (isLoggedIn()) {
     <link href="../../assets/aneti-style.css" rel="stylesheet">
 </head>
 <body>
+    
     <div class="login-container">
+        <img src="../../assets/logo-azul.png" style="width: 350px; margin-left: 20px;">
         <div class="login-header">
             <i class="fas fa-certificate fa-3x mb-3"></i>
             <h3>Sistema de Certificados</h3>
@@ -71,12 +73,7 @@ if (isLoggedIn()) {
                 </button>
             </form>
             
-            <div class="text-center mt-4">
-                <small class="text-muted">
-                    <i class="fas fa-info-circle me-1"></i>
-                    Usuário padrão: admin / Senha: admin123
-                </small>
-            </div>
+        
         </div>
     </div>
 

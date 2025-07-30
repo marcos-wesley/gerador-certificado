@@ -252,10 +252,12 @@ body {
     max-width: 400px;
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: auto;
+    margin-top: 50px;
 }
 
 .login-header {
-    background: #3498db;
+    background: #012d6a;
     color: white;
     padding: 2rem;
     text-align: center;
@@ -293,12 +295,12 @@ body {
 }
 
 .form-control:focus {
-    border-color: #3498db;
+    border-color: #012d6a;
     box-shadow: 0 0 0 0.2rem rgba(52, 152, 246, 0.25);
 }
 
 .btn-login {
-    background: linear-gradient(45deg, #3498db, #2980b9);
+    background: linear-gradient(45deg, #012d6a, #2980b9);
     border: none;
     border-radius: 25px;
     padding: 12px 30px;

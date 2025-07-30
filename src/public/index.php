@@ -8,21 +8,26 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .hero-section {
-            padding: 80px 0;
+            padding: 100px 0 0 0;
             color: white;
             text-align: center;
         }
+
+        .logo {
+            width: 350px;
+            margin-bottom: 50px;
+        }
+
         .validation-card {
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            margin-top: 40px;
             transition: transform 0.3s ease;
         }
         .validation-card:hover {
@@ -36,11 +41,11 @@
             transition: all 0.3s ease;
         }
         .search-input:focus {
-            border-color: #667eea;
+            border-color: #012d6a;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         .btn-search {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             border: none;
             border-radius: 15px;
             padding: 15px 30px;
@@ -64,7 +69,7 @@
             transform: translateY(-5px);
         }
         .feature-icon {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             color: white;
             width: 80px;
             height: 80px;
@@ -97,7 +102,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-certificate me-2"></i>
-                Portal de Certificados
+                Portal de Certificados - ANETI
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -110,11 +115,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#consulta">Consultar por E-mail</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../admin/login.php">
-                            <i class="fas fa-user-shield me-1"></i>Área Administrativa
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -125,13 +125,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
+                <img class="logo" src="../assets/img/logo-branca.png">
                     <h1 class="display-4 fw-bold mb-4">
                         <i class="fas fa-shield-alt me-3"></i>
-                        Portal de Validação de Certificados
+                        Portal de Validação e Emissão de Certificados
                     </h1>
                     <p class="lead mb-5">
-                        Verifique a autenticidade dos certificados emitidos de forma rápida e segura.
-                        Digite o código do certificado ou consulte por e-mail.
+                        Verifique a autenticidade dos certificados emitidos pela ANETI de forma rápida e segura.
+                        <br>Digite o código do certificado ou consulte por e-mail.
                     </p>
                 </div>
             </div>
@@ -220,7 +221,7 @@
                 <div class="col-md-4">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-shield-check"></i>
+                            <i class="fas fa-shield"></i>
                         </div>
                         <h5>2. Verificação Automática</h5>
                         <p class="text-muted">Nosso sistema verifica automaticamente a autenticidade do certificado.</p>
