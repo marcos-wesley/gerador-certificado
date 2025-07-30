@@ -19,7 +19,7 @@ if (!empty($email)) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -53,7 +53,7 @@ if (!empty($email)) {
             transform: translateY(-5px);
         }
         .certificate-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             color: white;
             padding: 15px 20px;
             border-radius: 10px;
@@ -65,11 +65,11 @@ if (!empty($email)) {
             padding: 12px 15px;
         }
         .search-input:focus {
-            border-color: #667eea;
+            border-color: #012d6a;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         .btn-search {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             border: none;
             border-radius: 10px;
             padding: 12px 25px;

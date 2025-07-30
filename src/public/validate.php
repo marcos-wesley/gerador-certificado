@@ -23,7 +23,7 @@ if (!empty($code)) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -46,7 +46,7 @@ if (!empty($code)) {
             margin-bottom: 30px;
         }
         .certificate-preview {
-            border: 3px solid #667eea;
+            border: 3px solid #012d6a;
             border-radius: 15px;
             padding: 30px;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -56,7 +56,7 @@ if (!empty($code)) {
         .certificate-title {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #667eea;
+            color: #012d6a;
             margin-bottom: 20px;
         }
         .participant-name {
@@ -69,7 +69,7 @@ if (!empty($code)) {
         .course-name {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #667eea;
+            color: #012d6a;
             margin: 15px 0;
         }
         .certificate-info {
@@ -106,11 +106,11 @@ if (!empty($code)) {
             padding: 12px 15px;
         }
         .search-input:focus {
-            border-color: #667eea;
+            border-color: #012d6a;
             box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
         }
         .btn-search {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #012d6a 34%, #25a244 100%);
             border: none;
             border-radius: 10px;
             padding: 12px 25px;
@@ -205,9 +205,7 @@ if (!empty($code)) {
                                             <i class="fas fa-download me-2"></i>Baixar Certificado
                                         </a>
                                     <?php endif; ?>
-                                    <button type="button" class="btn btn-outline-primary" onclick="window.print()">
-                                        <i class="fas fa-print me-2"></i>Imprimir
-                                    </button>
+                                    
                                     <button type="button" class="btn btn-outline-info" onclick="shareLink()">
                                         <i class="fas fa-share me-2"></i>Compartilhar
                                     </button>

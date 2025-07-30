@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $course_data) {
             $result = $presence->markPresence($course_id, $participant_id, true);
             
             if ($result) {
-                $message = 'Presença confirmada com sucesso! Você receberá o certificado após a conclusão do curso.';
+                $message = 'Presença confirmada com sucesso! Poderá consultar o certificado com o e-mail utilizado após a conclusão do curso.';
                 $message_type = 'success';
             } else {
                 // Verificar se já estava marcado como presente
@@ -184,6 +184,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $course_data) {
             padding: 10px 12px;
             font-size: 0.95rem;
             transition: all 0.2s ease-in-out;
+            margin-bottom: 20px;
+            width: 90%;
+            margin-top: 10px;
         }
         
         .form-control:focus {
@@ -201,6 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $course_data) {
             transition: all 0.3s ease;
             width: 100%;
             margin-top: 15px;
+            color: #fff;
         }
         
         .btn-primary:hover {
@@ -290,9 +294,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $course_data) {
     <div class="container">
         <div class="main-container">
             <div class="header">
-                <i class="fas fa-clipboard-check icon-large"></i>
+                <img src="../../assets/logo-branca.png" style="width: 350px;">
                 <h1>Lista de Presença</h1>
-                <p>Confirme sua participação no evento</p>
+                <p>Confirme sua participação no evento! Certificado só será emitido mediante presença. Confirme abaixo as informações do curso ao qual será emitido o certificado.</p>
             </div>
             
             <div class="content">
@@ -374,7 +378,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $course_data) {
                     
                     <div class="alert alert-info mt-4">
                         <i class="fas fa-lightbulb me-2"></i>
-                        <strong>Importante:</strong> Após confirmar sua presença, você receberá o certificado automaticamente quando o curso for finalizado. O certificado poderá ser validado através do portal público.
+                        <strong>Importante:</strong> Após confirmar sua presença, você terá acesso ao certificado automaticamente quando o curso for finalizado. O certificado poderá ser validado através do portal público.
                     </div>
                 <?php endif; ?>
             </div>
