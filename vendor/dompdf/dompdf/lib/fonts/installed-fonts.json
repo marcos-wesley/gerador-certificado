@@ -4,5 +4,41 @@
         "500": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/inter_500_4efc23ce37e6e22aee754d42cd63ca44",
         "600": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/inter_600_d63a7c0c8732180c323356ba08cac7d8",
         "bold": "inter_bold_c60e16028ab46ac4c30f16a14b5aab03"
+    },
+    "great vibes": {
+        "normal": "great_vibes_normal_2ca6ca6d1887081cd1cec1063b5c60d6"
+    },
+    "montserrat": {
+        "normal": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/montserrat_normal_b26a9dda87c06da407186511df8eb0ff",
+        "bold": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/montserrat_bold_2d27f12dc5b9646bc5af3affbf0b8df4",
+        "900": "montserrat_900_b77943a6e98c5cc431fc2167488f3b0b"
+    },
+    "roboto": {
+        "300": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/roboto_300_67dc12b3f1f113305ec431e641e8a57d",
+        "normal": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/roboto_normal_a5fc1441144adab7ff7fd3a2b9c8ceea",
+        "500": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/roboto_500_dbc341cef1fd80a9ebe6c202433656ea",
+        "bold": "roboto_bold_33a1d3e1e3260160834fe00ba212e515"
+    },
+    "open sans": {
+        "300_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_300_italic_258838c8efdfc7019e5a90819007278d",
+        "italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_italic_44abbf515697b2e1edcab2b61f1077c1",
+        "500_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_500_italic_860f16c89f325c81a7c4c82d4bb076eb",
+        "600_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_600_italic_f1486c0c9eda07de75fb146b499fb915",
+        "bold_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_bold_italic_89aa0be993cf3d3586687aed9e8514fb",
+        "800_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_800_italic_7f4ecba6a1acf28088760a1089f41cb8",
+        "300": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_300_cc9177faf761614fd9472dbfb39f3367",
+        "normal": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_normal_db681fdbf640fe1e91be48917a2e7fa1",
+        "500": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_500_7fced0367a08c27b9062e02430fa9412",
+        "600": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_600_255f61ac329584600fe78c0036ba7c53",
+        "bold": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/open_sans_bold_aee4a353f84fa74c10e96b62820c535a",
+        "800": "open_sans_800_a8c264394531e65c4bac1ff4f3ceeaf2"
+    },
+    "sansation": {
+        "300_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/sansation_300_italic_fd21578f8151f74ff77a2d3471083af9",
+        "italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/sansation_italic_70845f91b38e616802e23cda8617773e",
+        "bold_italic": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/sansation_bold_italic_f78fdd0a42d9b2b63461df75d021fbe3",
+        "300": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/sansation_300_49b100d9ffd43a002303339d6993ba84",
+        "normal": "C:\\wamp64\\www\\certificados_app\\vendor\\dompdf\\dompdf\/lib\/fonts\/sansation_normal_2f33b83ba9e60f8e99afea713177662d",
+        "bold": "sansation_bold_f95c568cea85c5f1777621e3b2f78e93"
     }
 }

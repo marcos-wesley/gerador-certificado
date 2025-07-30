@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificado ANETI</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 297mm;
+      height: 210mm;
+      background-image: url('FUNDO.jpg'); /* Substitua por sua imagem */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #012d6a;
+    }
+
+    .certificado {
+      width: 100%;
+      height: 100%;
+      padding: 40px 60px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+    }
+
+    .titulo {
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .intro {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .nome {
+      font-family: 'Great Vibes', cursive;
+      font-size: 60px;
+      margin: 20px 0 10px;
+      text-transform: capitalize;
+    }
+
+    .info-curso {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .assinatura {
+      position: absolute;
+      bottom: 100px;
+      left: 60px;
+      right: 60px;
+      text-align: center;
+    }
+
+    .linha-assinatura {
+      border-top: 1px solid #012d6a;
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+
+    .responsavel {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+
+    .rodape {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="certificado">
+    <div class="titulo">CERTIFICADO</div>
+    <div class="intro">A ANETI certifica que</div>
+
+    <div class="nome">[NOME_PARTICIPANTE]</div>
+
+    <div class="info-curso">
+      participou do curso/evento:<br>
+      <strong>[NOME_CURSO]</strong><br>
+      com carga horária de <strong>[CARGA_HORARIA]</strong> horas,<br>
+      realizado em <strong>[DATA_REALIZACAO]</strong>.
+    </div>
+
+    <div class="assinatura">
+      <div class="linha-assinatura"></div>
+      <div class="responsavel">[PALESTRANTE]</div>
+      <div>Responsável pelo Curso</div>
+    </div>
+
+    <div class="rodape">
+      Data de Emissão: [DATA_EMISSAO] &nbsp;|&nbsp;
+      Código de Validação: [CODIGO_VALIDACAO]
+    </div>
+  </div>
+</body>
+</html>
